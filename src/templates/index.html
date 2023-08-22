@@ -1,0 +1,104 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <H1 class="text-center mt-5 mb-5 text-primary">Python-Flask-Mysql</h1>
+        <div class='container'>
+            <div class='card shadow'>
+                <div class='card-body'>
+                    <form action="/user" method="post"> #le paso el endpoint 
+                        <div class='row mb-3'> #file
+                            <div class='col'>
+                                <label>name</label>
+                                <input type='text' class='form-control- mb-3' name="name">
+                            </div>
+                            <div class='col'>
+                                <label>password</label>
+                                <input type='text' class='form-control-mb-3'name="password">
+                            </div>
+                            <div class='col'>
+                                <button class='btn btn-primary mb-3 mt-4 type='submit'>Save</button>
+                            </form>
+                            <!-- tabla -->
+                            <table class="table table-bordered">
+                                <thead> #columns
+                                    <th scoped="col">#</th>
+                                    <th scoped="col">username</th>
+                                    <th scoped="col">name</th>
+                                    <th scoped="col">password</th>
+                                    <th scoped="col">edit</th>
+                                    <th scoped="col">delete</th>
+                                </thead>
+                            
+                            <tbody> #register 
+                                {% for d in data } <! -- data se llama el parametro en app.py para enviar los datos,x cada uno de los datos (d)vamos a ir pintando la tabla -->
+                                <tr>
+                                    <td>{{d.id}}</td> <! --the dates that have to be here ,will  come from database trough select --> 
+                                    <td>{{d.username}}</td>
+                                    <td>{{d.name}}</td>
+                                    <td>{{d.password}}</td>
+                                    <td>button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle='modal' data-bs-target="#modal{{d.id}}">edit</button></td> #boton #cada boton tiene un id en concreto
+                                    <td><a href="{{url_for{'delete,id=d.id'}}}" class="btn btn-danger btn-sm">delete</a></td> #va a contener un link
+                                </tr>
+                                <!-- modal -->
+                                <div class="modal fade" id="modal{{d.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title" id="exampleModalLongTitle">{{d.username}}</h1>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form action="/edit{{d.id}}"method="post"
+                                            <label>username</label>
+                                            <input type='text' class='form-control mb-3' name='username' value={{id.username}} >
+                                            <label>name</label>
+                                            <input type='text' class='form-control mb-3' name='name' value={{id.name}} >
+                                            <label>password</label>
+                                            <input type='text' class='form-control mb-3' name='password' value={{id.password}}>
+                                        </div>
+                                        <div class="modal-footer">
+                                         
+                                          <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                {% endfor %}
+                            </tbody>
+                        </table> 
+
+
+                                    
+                                {% endwith %}
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                             
+
+                                 
+
+
+
+        
+        
+    </body>
+</html>
